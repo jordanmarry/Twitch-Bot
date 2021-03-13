@@ -1,2 +1,5 @@
 discord
 asyncio
+twitch
+os
+time
