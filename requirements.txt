@@ -2,4 +2,4 @@ discord
 asyncio
 twitch-python
 Rx
-tcd
+tcd==3.2.1
