@@ -1,4 +1,4 @@
-import twitch, os, discord, asyncio, time, discord.utils, discord.ext.commands.bot
+import twitch, os, discord, asyncio, time, discord.utils, discord.ext.commands.bot, tcd
 from discord.ext import tasks, commands
 
 client_secret = (os.environ['TWITCH_BOT_TOKEN'])
