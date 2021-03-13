@@ -2,3 +2,4 @@ discord
 asyncio
 twitch-python
 Rx
+tcd
