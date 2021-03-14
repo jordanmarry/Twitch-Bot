@@ -98,14 +98,10 @@ async def search():
     await client.wait_until_ready()
     while True:
         x = len(everything)
-        print(x)
 
         try:
             for i in range(x):
                 guild = everything[i].guild_id
-                print(guild)
-                print(everything[i].overall)
-                print("\n")
                 name = (client.get_guild(guild))
                 channel = discord.utils.get(name.text_channels, name="stream")
                 if channel != None:
