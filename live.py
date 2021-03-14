@@ -112,10 +112,6 @@ async def search():
                                 everything[i].not_live.remove(user.data.get('display_name'))
                                 everything[i].live.append(user.data.get('display_name'))
 
-                                print(everything[i].not_live)
-                                print(everything[i].live)
-                                print(user.is_live)
-
                                 embed = discord.Embed(title=str(user.stream), color=0x6441a4)
                                 embed.set_author(name=user.data.get('login'), url= 'https://www.twitch.tv/' + user.data.get('login')
                                         , icon_url= user.data.get('profile_image_url'))
@@ -133,14 +129,9 @@ async def search():
                                 pass
 
                         else:
-                            print("ACCESSED")
                             if (user.data.get('display_name') in everything[i].live) == True:
-                                print("INSIDE")
                                 everything[i].not_live.append(user.data.get('display_name'))
                                 everything[i].live.remove(user.data.get('display_name'))
-                                print("DONE")
-                                print(everything[i].not_live)
-                                print(everything[i].live)
                 else:
                     pass
         except Exception:
