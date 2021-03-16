@@ -106,9 +106,20 @@ async def search():
                 channel = discord.utils.get(name.text_channels, name="stream")
                 if channel != None:
                     for user in helix.users(everything[i].overall):
+                        print(everything[i].guild_id)
+                        print(everything[i].live)
+                        print(everything[i].not_live)
+                        print(everything[i].overall)
+                        print(user.is_live)
                         if ((user.data.get('display_name') in everything[i].not_live) == True) and (user.is_live == True):
                             everything[i].not_live.remove(user.data.get('display_name'))
                             everything[i].live.append(user.data.get('display_name'))
+
+                            print(everything[i].guild_id)
+                            print(everything[i].live)
+                            print(everything[i].not_live)
+                            print(everything[i].overall)
+                            print(user.is_live)
 
                             embed = discord.Embed(title=str(user.stream), color=0x6441a4)
                             embed.set_author(name=user.data.get('login'), url= 'https://www.twitch.tv/' + user.data.get('login')
@@ -123,10 +134,9 @@ async def search():
                                          "<https://www.twitch.tv/" + user.data.get('login') +"> ! Go check it out!")
 
                             await channel.send(embed=embed)
-                        else:
-                            if (user.data.get('display_name') in everything[i].live) == True:
-                                everything[i].not_live.append(user.data.get('display_name'))
-                                everything[i].live.remove(user.data.get('display_name'))
+                        elif (user.data.get('display_name') in everything[i].live) == True and (user.is_live == False):
+                            everything[i].not_live.append(user.data.get('display_name'))
+                            everything[i].live.remove(user.data.get('display_name'))
                 else:
                     pass
         except Exception:
