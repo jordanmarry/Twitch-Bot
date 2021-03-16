@@ -106,28 +106,23 @@ async def search():
                 channel = discord.utils.get(name.text_channels, name="stream")
                 if channel != None:
                     for user in helix.users(everything[i].overall):
-                        if user.is_live == True:
-                           
-                            if (user.data.get('display_name') in everything[i].not_live) == True:
-                                everything[i].not_live.remove(user.data.get('display_name'))
-                                everything[i].live.append(user.data.get('display_name'))
+                        if ((user.data.get('display_name') in everything[i].not_live) == True) and (user.is_live == True):
+                            everything[i].not_live.remove(user.data.get('display_name'))
+                            everything[i].live.append(user.data.get('display_name'))
 
-                                embed = discord.Embed(title=str(user.stream), color=0x6441a4)
-                                embed.set_author(name=user.data.get('login'), url= 'https://www.twitch.tv/' + user.data.get('login')
+                            embed = discord.Embed(title=str(user.stream), color=0x6441a4)
+                            embed.set_author(name=user.data.get('login'), url= 'https://www.twitch.tv/' + user.data.get('login')
                                         , icon_url= user.data.get('profile_image_url'))
-                                embed.set_thumbnail(url = user.data.get('profile_image_url'))
-                                embed.add_field(name="*Game*", value=user.stream.data.get('game_name'))
-                                embed.add_field(name="*Viewers*", value=user.stream.data.get('viewer_count'))
-                                embed.set_image(url= 'https://static-cdn.jtvnw.net/previews-ttv/live_user_' + 
+                            embed.set_thumbnail(url = user.data.get('profile_image_url'))
+                            embed.add_field(name="*Game*", value=user.stream.data.get('game_name'))
+                            embed.add_field(name="*Viewers*", value=user.stream.data.get('viewer_count'))
+                            embed.set_image(url= 'https://static-cdn.jtvnw.net/previews-ttv/live_user_' + 
                                         user.stream.data.get('user_login') + '-320x180.jpg')
-                                embed.set_footer(text= "Made By: @RabbiT Cause MEE6 SUCKS")
-                                await channel.send("Hey @everyone, " + user.display_name + " is now live on " +
+                            embed.set_footer(text= "Made By: @RabbiT Cause MEE6 SUCKS")
+                            await channel.send("Hey @everyone, " + user.display_name + " is now live on " +
                                          "<https://www.twitch.tv/" + user.data.get('login') +"> ! Go check it out!")
 
-                                await channel.send(embed=embed)
-                            else:
-                                pass
-
+                            await channel.send(embed=embed)
                         else:
                             if (user.data.get('display_name') in everything[i].live) == True:
                                 everything[i].not_live.append(user.data.get('display_name'))
