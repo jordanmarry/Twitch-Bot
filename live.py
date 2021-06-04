@@ -111,7 +111,7 @@ async def search():
                         print(everything[i].not_live)
                         print(everything[i].overall)
                         print(user.is_live)
-                        if ((user.data.get('display_name') in everything[i].not_live) == True) and (user.is_live == True):
+                        if ((user.data.get('display_name') in everything[i].not_live) == True) and ((user.data.get('display_name') in everything[i].live) == False) and (user.is_live == True):
                             everything[i].not_live.remove(user.data.get('display_name'))
                             everything[i].live.append(user.data.get('display_name'))
 
@@ -134,7 +134,7 @@ async def search():
                                          "<https://www.twitch.tv/" + user.data.get('login') +"> ! Go check it out!")
 
                             await channel.send(embed=embed)
-                        elif (user.data.get('display_name') in everything[i].live) == True and (user.is_live == False):
+                        elif ((user.data.get('display_name') in everything[i].live) == True) and ((user.data.get('display_name') in everything[i].not_live) == False) and (user.is_live == False):
                             everything[i].not_live.append(user.data.get('display_name'))
                             everything[i].live.remove(user.data.get('display_name'))
                 else:
